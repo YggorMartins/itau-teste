@@ -62,7 +62,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Filesystem, dependencies and IaC
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -73,7 +73,7 @@ jobs:
       - name: Build hardened image
         run: docker build --tag itau-teste:security-scan .
       - name: Container vulnerabilities
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: itau-teste:security-scan
           severity: HIGH,CRITICAL
@@ -108,7 +108,7 @@ jobs:
             -I -T 5 -r zap-report.html -J zap-report.json
       - name: Upload ZAP report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: zap-baseline-report
           path: |
