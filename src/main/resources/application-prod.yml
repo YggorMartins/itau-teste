@@ -1,0 +1,12 @@
+server:
+  ssl:
+    enabled: true
+    enabled-protocols: TLSv1.3
+    key-store: ${TLS_KEYSTORE_PATH}
+    key-store-password: ${TLS_KEYSTORE_PASSWORD}
+    key-store-type: PKCS12
+  forward-headers-strategy: native
+
+app:
+  security:
+    oauth2-enabled: true

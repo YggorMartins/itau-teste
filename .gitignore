@@ -1,6 +1,19 @@
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
+.mvn-cache/
+.m2/
+.env
+.env.*
+!.env.example
+*.p12
+*.pfx
+*.jks
+*.pem
+*.key
+*.crt
+zap-report.*
+dependency-check-report.*
 !**/src/main/**/target/
 !**/src/test/**/target/
 

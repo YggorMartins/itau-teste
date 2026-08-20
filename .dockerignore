@@ -1,0 +1,11 @@
+.git
+.github
+.idea
+.mvn-cache
+target
+docs
+*.iml
+*.log
+.env
+compose*.yml
+observability
