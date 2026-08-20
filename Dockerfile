@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 
-FROM maven:3.9.16-eclipse-temurin-21-alpine AS build
+FROM maven:3-eclipse-temurin-24-alpine AS build
 WORKDIR /workspace
 
 # Cache de dependências separado do código para builds reproduzíveis e rápidos.
