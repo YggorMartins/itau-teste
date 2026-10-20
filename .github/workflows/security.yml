@@ -35,10 +35,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - id: dependency-graph
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const { data } = await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            const enabled =
+              data.security_and_analysis?.dependency_graph?.status === "enabled";
+            core.setOutput("enabled", enabled ? "true" : "false");
       - uses: actions/dependency-review-action@v4
+        if: steps.dependency-graph.outputs.enabled == 'true'
         with:
           fail-on-severity: high
           deny-licenses: GPL-3.0, AGPL-3.0
+      - name: Skip dependency review when dependency graph is disabled
+        if: steps.dependency-graph.outputs.enabled != 'true'
+        run: echo "Dependency graph is disabled; skipping dependency review."
 
   codeql:
     name: CodeQL SAST
